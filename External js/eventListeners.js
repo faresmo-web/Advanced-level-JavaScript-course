@@ -4,4 +4,4 @@ document.getElementById("calc-btn").addEventListener("click", function(){
 
     let result = divide(Number(firstInput) ,Number(secondInput))
     document.getElementById("result").innerHTML = result
-})
+})  

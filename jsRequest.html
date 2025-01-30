@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content"></div>
+
+
+    <script>
+        function readPosts(){
+            let request = new XMLHttpRequest()
+            request.open("GET", "https://jsonplaceholder.typicode.com/posts")
+            request.responseType = "json"
+            request.send()
+            request.onload = function(){
+                // console.log(request.response)
+                let posts = request.response
+                
+                for(post of posts){
+                    document.getElementById("content").innerHTML += `<h1>${post.title}</h1>`
+                }
+            }
+        }
+        
+
+
+        function createNewPost(){
+            let request = new XMLHttpRequest()
+            request.open("POST", "https://jsonplaceholder.typicode.com/posts")
+            request.responseType = "json"
+            request.setRequestHeader("Accept", "application/json")
+            request.setRequestHeader("Content-type", "application/json")
+            let bodyParams = `
+            { 
+                "title": "hjgfj",
+                "body": "jkhkhkkjykyt",
+                "userId": 1
+            }`
+            request.send(bodyParams)
+            request.onload = function(){
+                let response = request.response
+                console.log(response)
+            }
+        }
+        createNewPost()
+    </script>
+</body>
+</html>
